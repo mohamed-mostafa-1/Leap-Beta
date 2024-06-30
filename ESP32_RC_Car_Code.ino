@@ -16,6 +16,10 @@
 #define echoPin 2
 #define trigPin 4
 
+#define IR_RIGHT 32
+#define IR_BACK 33
+#define IR_LEFT 34
+
 long duration;
 float distance;
 
@@ -77,24 +81,30 @@ int IN3 = 19;
 int IN4 = 18;
 
 void setup() {
+  Serial.begin(115200);
+  
+  // Initialize servo first to ensure proper setup
+  myServo.attach(15);
+  
   lcd.init();
   lcd.clear();
   lcd.backlight();
   
-  lcd.createChar(0, teslaLogo);
+  lcd.setCursor(4, 0);  
+  lcd.print("L e a p");
 
-  lcd.setCursor(5, 1);  
-  lcd.print("Tesla");
+  lcd.setCursor(6, 1);  
+  lcd.print("BETA");
   
   lcd.setCursor(7, 0);  
   lcd.write(byte(0));   
 
-  myServo.attach(15);
-  
+  pinMode(IR_RIGHT, INPUT);
+  pinMode(IR_BACK, INPUT);
+  pinMode(IR_LEFT, INPUT);
+
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-
-  Serial.begin(115200);
 
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
@@ -117,9 +127,6 @@ void setup() {
   config.token_status_callback = tokenStatusCallback;
   Firebase.begin(&config, &auth);
 
-  pinMode(enA, OUTPUT);
-  pinMode(enB, OUTPUT);
-
   ledcSetup(R, 5000, 8);  // Channel 0 for Motor A, 5 kHz frequency, 8-bit resolution
   ledcAttachPin(enA, R);
   ledcSetup(L, 5000, 8);  // Channel 1 for Motor B, 5 kHz frequency, 8-bit resolution
@@ -137,9 +144,44 @@ void setup() {
 }
 
 void loop() {
-  if (Firebase.ready() && (millis() - dataMillis > 100)) {
-    dataMillis = millis();
+  unsigned long currentMillis = millis();
+  if (Firebase.ready() && (currentMillis - dataMillis > 100)) {
+    dataMillis = currentMillis;
 
+    // Read analog data from an IR sensor
+    int IR_reads1 = analogRead(IR_RIGHT);
+    int IR_reads2 = analogRead(IR_LEFT);
+    int IR_reads3 = analogRead(IR_BACK);
+
+    // Debug prints for raw analog readings
+    Serial.print("IR_RIGHT Raw: ");
+    Serial.println(IR_reads1);
+    Serial.print("IR_LEFT Raw: ");
+    Serial.println(IR_reads2);
+    Serial.print("IR_BACK Raw: ");
+    Serial.println(IR_reads3);
+
+    // Map the analog readings to a 0-200 cm range
+    int IR_mapped1 = map(IR_reads1, 0, 4095, 0, 200);
+    int IR_mapped2 = map(IR_reads2, 0, 4095, 0, 200);
+    int IR_mapped3 = map(IR_reads3, 0, 4095, 0, 200);
+    
+    // Debug prints for mapped readings
+    Serial.print("IR_RIGHT Mapped: ");
+    Serial.println(IR_mapped1);
+    Serial.print("IR_LEFT Mapped: ");
+    Serial.println(IR_mapped2);
+    Serial.print("IR_BACK Mapped: ");
+    Serial.println(IR_mapped3);
+    
+    // Update Firebase with new sensor data
+    updateFirebase("IR_RIGHT/Real_Reads", IR_reads1);
+    updateFirebase("IR_RIGHT/Mapped_Reads", IR_mapped1);
+    updateFirebase("IR_LEFT/Real_Reads", IR_reads2);
+    updateFirebase("IR_LEFT/Mapped_Reads", IR_mapped2);
+    updateFirebase("IR_BACK/Real_Reads", IR_reads3);
+    updateFirebase("IR_BACK/Mapped_Reads", IR_mapped3);
+    
     if (Firebase.RTDB.getInt(&fbdo, "/Speed/speed", &FBSignal1)) {
       Serial.print("Speed: ");
       Serial.println(FBSignal1);
@@ -154,31 +196,10 @@ void loop() {
       Serial.println(fbdo.errorReason());
     }
 
-    switch (FBSignal1) {
-      case 0: Speed = 100; break;
-      case 1: Speed = 110; break;
-      case 2: Speed = 120; break;
-      case 3: Speed = 130; break;
-      case 4: Speed = 140; break;
-      case 5: Speed = 150; break;
-      case 6: Speed = 180; break;
-      case 7: Speed = 200; break;
-      case 8: Speed = 220; break;
-      case 9: Speed = 240; break;
-      default: Speed = 100; break;
-    }
-
-    switch (FBSignal2) {
-      case 2: backward(); break;
-      case 8: forward(); break;
-      case 4: left(); break;
-      case 6: right(); break;
-      case 0: stop(); break;
-      default: stop(); break;
-    }
+    adjustSpeedAndDirection(FBSignal1, FBSignal2);
   }
 
-  distance = measur`eDistance();
+  distance = measureDistance();
 
   if (distance > 0) {
     Serial.print("Distance: ");
@@ -186,14 +207,33 @@ void loop() {
     Serial.println(" cm");
   }
 
-  delay(1000);
-
-  if (distance > 0 && distance < 20) {
+  if (distance < 20) {
     findDistance();
   }
 }
 
-// Functions for controlling the motor
+void updateFirebase(const char* path, int value) {
+  if (!Firebase.RTDB.setInt(&fbdo, path, value)) {
+    Serial.print("Failed to update ");
+    Serial.print(path);
+    Serial.print(": ");
+    Serial.println(fbdo.errorReason());
+  }
+}
+
+void adjustSpeedAndDirection(int speed, int direction) {
+  Speed = speed;
+
+  switch (direction) {
+    case 1: forward(); break;
+    case 2: backward(); break;
+    case 3: left(); break;
+    case 6: right(); break;
+    case 0: stop(); break;
+    default: stop(); break;
+  }
+}
+
 void backward() {
   ledcWrite(R, Speed);
   ledcWrite(L, Speed);
