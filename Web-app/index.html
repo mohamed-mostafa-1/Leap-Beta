@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Leap Car — An IoT Car</title>
+    <meta
+      name="description"
+      content="Leap Car — An IoT Car"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" type="text/css" />
+    <link rel="stylesheet" href="ultrasonic.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="stylesheet" href="arrows.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+        <a href="./index.html"><img src="./assets/logo.png" /></a>
+    </header>
+
+    <nav id="operations">
+        <ul>
+		<li>
+			<button id="listdata">List All The Data</button>
+		</li>
+		<li>          
+			<button id="controlcar">Control The car</button>
+		</li>
+	</ul>
+    </nav>
+
+    <main>
+    </main>
+
+    <script type="module" src="initialize_firebase.js" defer></script>
+    <script type="module" src="script.js" async defer></script>
+  </body>
+</html>
