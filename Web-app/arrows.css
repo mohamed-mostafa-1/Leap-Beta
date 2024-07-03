@@ -1,0 +1,79 @@
+.content {
+  position: relative;
+  transform: translate(-50%, -50%); 
+  left: 98.5%;
+  top: 77               px;
+  width: 320px;
+}
+
+/* Arrow & Hover Animation */
+#to-bottom,
+#to-top,
+#to-right,
+#to-left {
+  width: 75px;
+  height: 65px;
+
+  &:active {
+    
+    polygon {
+      fill: grey;
+      transition: all .2s ease-out;
+
+      &.arrow-bottom {
+        transform: translateY(-18px);
+      }
+
+      &.arrow-top {
+        transform: translateY(18px);
+      }
+      
+    }
+  
+  }
+  
+}
+
+polygon {
+  fill: #FFF;
+  transition: all .2s ease-out;
+    
+  &.arrow-middle {
+	  opacity: 0.75;
+	}
+
+	&.arrow-top {
+	  opacity: 0.5
+	}
+	 
+}
+
+
+#to-top {
+  transform: rotate(180deg) translateX(77.5px) translateY(150px);
+}
+
+#to-right {
+  transform: rotate(270deg) translateX(75px) translateY(-75px);
+}
+
+#to-left {
+  transform: rotate(90deg) translateX(-75px) translateY(315px);
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    position: relative;
+    transform: translate(-50%, -50%); 
+    left: 97%;
+    top: 50px;
+    width: 320px;
+  }  
+}
+
+#speed_selector {
+  position: relative;
+  left: 70%;
+  top: -185px;
+  width: fit-content;
+}

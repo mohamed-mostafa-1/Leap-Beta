@@ -1,0 +1,120 @@
+body {
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('./assets/wallpaper.jpg');
+    background-size: 100vw;
+    background-repeat: repeat;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+header, 
+header * {
+    margin: 0 auto; 
+    margin-top: -1vh;
+}
+header {
+    display: flex;
+}
+
+/* Resetting the button default styles in the li element */
+nav ul li button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+/* Resetting the anchor element default styles in the li element */
+nav ul li a {
+    color: inherit;
+    text-decoration: inherit;    
+}
+nav ul li {
+    cursor: pointer;
+    font-size: 20px;
+    height: 10vh;
+    line-height: 10vh;
+    display: flex;
+    justify-content: center;
+}
+nav ul li:hover { filter: drop-shadow(0 0 10px #ff0075); font-weight: bold; }
+nav ul li:hover::before {
+    content: url("./assets/vaporwave-car-left.png");
+    padding-right: 1vw;
+    display: inline;
+}
+nav ul li:hover::after {
+    content: url("./assets/vaporwave-car-right.png"); 
+    display: block;
+    padding-left: 1vw;
+}
+
+article,
+section, 
+article section h2 {
+    margin: 0 auto;
+    margin-top: 5vh;
+}
+
+article section h2 {
+	margin-block: 5vh;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    background-color: grey;
+    height: 100%;
+    align-items: center;
+    background: linear-gradient(rgba(100, 100, 100, 0.50), rgba(100, 100, 100, 0.50));
+    margin-top: -5vh;
+    padding: 2vw;
+}
+
+article section img {
+	min-width: 200px;
+	max-width: 50%;
+}
+
+article section div#figure {
+	display: flex;
+	flex-direction: row;
+    column-gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    html, body {
+        max-height: 100vh;
+        overflow: hidden;
+    }
+
+    body {
+	    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('./assets/mobile-wallpaper.jpg');
+    	background-size: 100vw;
+    	background-repeat: repeat;
+    }
+
+    nav ul { 
+        padding-left: 0;
+    }
+
+    article section img {
+        position: relative;
+    	max-width: 100%;
+        /* right: 25%; */
+    }
+
+    article section figure {
+	display: unset;
+    }
+}
+
+/* Classes styles */
+.bold {
+    font-weight: bold;
+}
