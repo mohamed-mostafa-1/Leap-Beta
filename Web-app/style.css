@@ -87,6 +87,21 @@ article section div#figure {
     align-items: center;
 }
 
+#data_items_separator {
+	width: 90%;
+}
+
+#data_items {
+	display: flex;
+	width: 90%;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+#data_items p {
+	width: 200px;
+}
+
 @media only screen and (max-width: 600px) {
     html, body {
         max-height: 100vh;
