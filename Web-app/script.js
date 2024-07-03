@@ -79,21 +79,25 @@ function whichOperation(keys, values) {
 			<h2>Car Data</h2>
 			<div id="figure">
 					<div id="IR_LEFT">
-						<p><span class="bold">${keys[7]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[7]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[7]["Real_Reads"]}<p>
+						<p><span class="bold">${keys[7]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[7]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[7]["Real_Reads"]}</p>
 					</div>
-				  	<img src="${values[0]}">
-				  	<div id="data_items">		
-						<p><span class="bold">${keys[1]}</span>: ${values[1]}<p>
-						<p><span class="bold">${keys[2]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[2]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[2]["Real_Reads"]} <p>
-						<p><span class="bold">${keys[3]}</span>: ${values[3]}<p>
-						<p><span class="bold">${keys[4]}</span>: ${values[4]}<p>
-						<p><span class="bold">${keys[5]}</span>: ${values[5]}<p>
-						<p><span class="bold">${keys[6]}</span>: ${values[6]}<p>
+				  	<img src="${values[0]}" />
+				  	<div id="IR_RIGHT">		
+						<p><span class="bold">${keys[2]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[2]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[2]["Real_Reads"]} <p/>
 					</div>
 				</div>
-				<p><span class="bold">${keys[8]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[8]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[8]["Real_Reads"]}</p>
+				<div id="IR_BACK">
+					<p><span class="bold">${keys[8]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[8]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[8]["Real_Reads"]}</p>
+				</div>
+				<hr id="data_items_separator">
+				<div id="data_items">
+					<p><span class="bold">${keys[1]}</span>: ${values[1]}</p>
+					<p><span class="bold">${keys[3]}</span>: ${values[3]}</p>
+					<p><span class="bold">${keys[4]}</span>: ${values[4]}</p>
+					<p><span class="bold">${keys[5]}</span>: ${values[5]}</p>
+					<p><span class="bold">${keys[6]}</span>: ${values[6]}</p>
+				</div>
 		      </section>
-
 			  <div class="radar-container">
 			    <div class="radar" id="radar"></div>
 			    <div class="needle" id="needle"></div>
@@ -110,19 +114,24 @@ function whichOperation(keys, values) {
 				<h2>Control the Car</h2>
 				<div id="figure">
 					<div id="IR_LEFT">
-						<p><span class="bold">${keys[7]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[7]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[7]["Real_Reads"]}<p>
+						<p><span class="bold">${keys[7]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[7]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[7]["Real_Reads"]}</p>
 					</div>
-				  	<img src="${values[0]}">
-				  	<div id="data_items">		
-						<p><span class="bold">${keys[1]}</span>: ${values[1]}<p>
-						<p><span class="bold">${keys[2]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[2]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[2]["Real_Reads"]} <p>
-						<p><span class="bold">${keys[3]}</span>: ${values[3]}<p>
-						<p><span class="bold">${keys[4]}</span>: ${values[4]}<p>
-						<p><span class="bold">${keys[5]}</span>: ${values[5]}<p>
-						<p><span class="bold">${keys[6]}</span>: ${values[6]}<p>
+				  	<img src="${values[0]}" />
+				  	<div id="IR_RIGHT">		
+						<p><span class="bold">${keys[2]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[2]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[2]["Real_Reads"]} <p/>
 					</div>
 				</div>
-				<p><span class="bold">${keys[8]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[8]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[8]["Real_Reads"]}</p>
+				<div id="IR_BACK">
+					<p><span class="bold">${keys[8]}</span><br>&nbsp;&nbsp;&nbsp;- Mapped_Reads: ${values[8]["Mapped_Reads"]} <br>&nbsp;&nbsp;&nbsp;- Real_Reads: ${values[8]["Real_Reads"]}</p>
+				</div>
+				<hr id="data_items_separator">
+				<div id="data_items">
+					<p><span class="bold">${keys[1]}</span>: ${values[1]}</p>
+					<p><span class="bold">${keys[3]}</span>: ${values[3]}</p>
+					<p><span class="bold">${keys[4]}</span>: ${values[4]}</p>
+					<p><span class="bold">${keys[5]}</span>: ${values[5]}</p>
+					<p><span class="bold">${keys[6]}</span>: ${values[6]}</p>
+				</div>
 		      </section>
 		        <div class="content">
 			    <svg id="to-bottom">
