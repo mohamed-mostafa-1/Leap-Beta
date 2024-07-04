@@ -94,9 +94,9 @@ function whichOperation(keys, values) {
 					<p><span class="bold">${keys[1]}</span>: ${values[1]}</p>
 					<p><span class="bold">${keys[3]}</span>: ${values[3]}</p>
 					<p><span class="bold">${keys[4]}</span>: ${values[4]}</p>
-					<p><span class="bold">${keys[5]}</span>: ${values[5]}</p>
 					<p><span class="bold">${keys[6]}</span>: ${values[6]}</p>
-				</div>
+					<p><span class="bold">${keys[5]}</span>: ${values[5]}</p>				
+     			       </div>
 		      </section>
 			  <div class="radar-container">
 			    <div class="radar" id="radar"></div>
@@ -105,8 +105,7 @@ function whichOperation(keys, values) {
 		    </article>
 		`;
 
-		// setRadarAngle(values[6]);
-		setRadarAngle(90);
+		setRadarAngle(values[6]);
   } else if (operation == "controlcar") {
     main.innerHTML = `	    
 			<article id="article">
@@ -129,8 +128,8 @@ function whichOperation(keys, values) {
 					<p><span class="bold">${keys[1]}</span>: ${values[1]}</p>
 					<p><span class="bold">${keys[3]}</span>: ${values[3]}</p>
 					<p><span class="bold">${keys[4]}</span>: ${values[4]}</p>
-					<p><span class="bold">${keys[5]}</span>: ${values[5]}</p>
 					<p><span class="bold">${keys[6]}</span>: ${values[6]}</p>
+					<p><span class="bold">${keys[5]}</span>: ${values[5]}</p>
 				</div>
 		      </section>
 		        <div class="content">
