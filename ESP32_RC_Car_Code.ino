@@ -41,14 +41,14 @@ Servo myServo;  // create servo object to control a servo
 
 float pos = 0;  // variable to store the servo position
 // Insert your network credentials
-#define WIFI_SSID "realme"
-#define WIFI_PASSWORD "99999999"
+#define WIFI_SSID "******"
+#define WIFI_PASSWORD "*****"
 
 // Insert Firebase project API Key
-#define API_KEY "AIzaSyCGmKD7DbhuzGrDXoh_g5CrI_gFCk8d2IQ"
+#define API_KEY "***********************"
 
 // Insert RTDB URL
-#define DATABASE_URL "https://leapcariotproject-default-rtdb.firebaseio.com/"
+#define DATABASE_URL "*****"
 /*Define the Firebase Data object */
 FirebaseData fbdo;
 /*Define the FirebaseAuth data for authentication data */
@@ -119,8 +119,8 @@ void setup() {
   Serial.printf("Firebase Client v%s\n\n", FIREBASE_CLIENT_VERSION);
   
   config.api_key = API_KEY;
-  auth.user.email = "abdelrahmantechcs@gmail.com";
-  auth.user.password = "howareyou?!123";
+  auth.user.email = "**************";
+  auth.user.password = "***********";
   config.database_url = DATABASE_URL;
   Firebase.reconnectWiFi(true);
   fbdo.setResponseSize(4096);
